@@ -1,0 +1,18 @@
+Configure access and secret key aws
+
+
+
+aws s3 ls > s3_buckets.txt
+
+
+cat s3_buckets.txt| cut -d ' ' -f 3-  > s3_housing.txt
+
+
+#!/bin/bash
+
+# Read bucket names from s3_housing.txt and list their contents
+for i in $(cat s3_housing.txt)
+do
+echo "Bucket Name: $i"
+aws s3 ls s3://$i --no-sign-request
+done
